@@ -70,3 +70,14 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem 'pg'
+gem 'activeadmin'
+gem "sassc-rails"
+
+
+# Plus integrations with:
+gem 'devise'
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'
