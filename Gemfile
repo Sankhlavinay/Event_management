@@ -73,3 +73,4 @@ end
 
 gem 'pg'
 gem 'devise'
+gem 'activeadmin'
