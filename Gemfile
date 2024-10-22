@@ -73,4 +73,8 @@ end
 
 gem 'pg'
 gem 'devise'
+
 gem 'pundit'
+
+gem 'activeadmin'
+
