@@ -4,17 +4,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  ROLE = ["Organizer", "Attendee"]
 
   validates :email, :role, presence: true
 
+  has_many :bookings, dependent: :destroy
+  has_many :events, through: :bookings
 
+  has_many :tickets
+  
   def organizer?
-    role == 'organizer'
+    role == 'Organizer'
   end
 
   def attendee?
-    role == 'attendee'
-
+    role == 'Attendee'
+  end
 
   
   def self.ransackable_attributes(auth_object = nil)

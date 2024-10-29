@@ -26,6 +26,11 @@
         </div>
 
         <div class="form-group">
+          <%= f.label :role, class: "form-label mb-2 mt-2" %>
+          <%= f.select :role, options_for_select(User::ROLE,  selected: f.object.role), {prompt: "Select Role"}, class: "form-select" %>
+        </div>
+
+        <div class="form-group">
           <%= f.submit "Sign up",class: "btn btn-primary mt-3" %>
         </div>
       <% end %>

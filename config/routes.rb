@@ -8,4 +8,10 @@ Rails.application.routes.draw do
       }
   
   root "home#index"
+
+  resources :events, only: [:index, :show]
+
+  namespace :booking do
+    resources :events
+  end 
 end
