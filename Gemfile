@@ -1,3 +1,4 @@
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -76,5 +77,7 @@ gem 'devise'
 
 gem 'pundit'
 
-gem 'activeadmin'
-
+gem 'activeadmin', '~> 2.0'
+gem 'faker'
+gem 'byebug'
+gem 'kaminari'  
