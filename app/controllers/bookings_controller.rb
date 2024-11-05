@@ -21,10 +21,11 @@ class BookingsController < ApplicationController
       no_of_tickets: params[:no_of_tickets].to_i,
       price_paid: @amount
     )
+    BookingsMailer.booking_confirmation(@booking).deliver_now
     redirect_to event_path(@event), notice: "Your Tickets has been booked"
 
   rescue Stripe::StripeError => error
-    redirect_to event_path(@event), notice: "#{error.message}"
+    redirect_to event_path(@event), alert: "#{error.message}"
   end
 
 

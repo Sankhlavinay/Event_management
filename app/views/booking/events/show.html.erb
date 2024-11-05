@@ -8,7 +8,7 @@
             <p class="lead"><%= @event.description %></p>
             <p class="lead"><%= @event.location %></p>
             <p class="lead"><%= @event.date %></p>
-            <p class="lead"><%= @event.time %></p>
+            <p class="lead"><%= @event.time.strftime("%I:%M %p") %></p>
             <p class="lead text-primary"><i class="bi bi-currency-rupee"></i><%= @event.ticket_price %></p>
             <p class="lead"><%= @event.available_ticket %></p>
         </div>

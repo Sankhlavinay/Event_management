@@ -19,8 +19,9 @@
       <div class="row">
         <div class="col-lg-10 mx-auto">
           <%= render "shared/header" %>
-          <p class="notice "><%= notice if notice.present?  %></p>
+          <%= render "shared/flash" %>
           <%= yield %>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
         </div>
       </div>
     </div>
