@@ -9,7 +9,11 @@
               <p class="lead fw-bold text-primary "><%= event.title %></p>
               <p class="lead text-truncate"><%= event.description %></p>
               <p class="lead "><small><%= event.date&.strftime("%B %d, %Y") %> <%= event.time&.strftime("%I:%M %p") %></small></p>
-              <%= link_to 'View', booking_event_path(event), class: "btn btn-primary" %>
+              <% if current_user.organizer? %>
+                <%= link_to 'View', booking_event_path(event), class: "btn btn-primary" %>
+              <% else %>
+                <%= link_to 'View', event_path(event), class: "btn btn-primary" %>
+              <% end %>
               <% if current_user.organizer? %>
                 <%= link_to 'Delete', booking_event_path(event), class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Are you Sure to delete this event" } %>
               <% end %>
@@ -22,4 +26,4 @@
     <% end %>
   </div>
 </div>
-<%= paginate @events %>
+<%= paginate @events if @events.present? %>

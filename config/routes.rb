@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :events, only: [:index, :show]
 
+  resources :bookings, only: %i[create]
+
   namespace :booking do
     resources :events
   end 

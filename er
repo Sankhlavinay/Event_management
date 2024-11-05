@@ -1,0 +1,27 @@
+ => 
+[32m#<Stripe::Customer:0x32dd4 id=cus_R7Rf94JrAx0l4W> JSON: {
+  "id": "cus_R7Rf94JrAx0l4W",
+  "object": "customer",
+  "address": null,
+  "balance": 0,
+  "created": 1730198162,
+  "currency": null,
+  "default_source": null,
+  "delinquent": false,
+  "description": null,
+  "discount": null,
+  "email": "vinay@gmail.com",
+  "invoice_prefix": "4E972833",
+  "invoice_settings": {"custom_fields":null,"default_payment_method":null,"footer":null,"rendering_options":null},
+  "livemode": false,
+  "metadata": {},
+  "name": "Random_name",
+  "next_invoice_sequence": 1,
+  "phone": "Random_number",
+  "preferred_locales": [
+
+  ],
+  "shipping": null,
+  "tax_exempt": "none",
+  "test_clock": null
+}[0m 
