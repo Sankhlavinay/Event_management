@@ -1,0 +1,20 @@
+<div class="mt-3 mb-3">
+  <div class="row ">
+    <% if @bookings.present? %>
+      <% @bookings.each do |booking| %>
+        <div class="col-lg-4 mb-2">
+          <div class="card shadow">
+            <div class="card-body text-center">
+                  <image class="mb-2"><%#= qr_code_svg_for(@booking).html_safe %></image> 
+                  <h3><%= booking.event.title %></h3>
+                  <h3>Price: <%= booking.price_paid %></h3>
+                  <h3>No Of Tickets: <%= booking.no_of_tickets %></h3>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h1 class="text-center">Sorry! No Booking at the moment</h1>
+    <% end %>
+  </div>
+</div>

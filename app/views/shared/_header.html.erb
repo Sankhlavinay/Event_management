@@ -17,6 +17,9 @@
               <%= link_to 'Events', events_path, class: "nav-link active" %>
             <% end %>  
           </li>
+          <li class="nav-items">
+            <%= link_to 'Bookings', all_bookings_bookings_path, class: "nav-link active" %>
+          </li>
           <% if current_user.organizer? %>
             <li class="nav-item">
               <%= link_to 'Create Event', new_booking_event_path, class: "nav-link active" %>

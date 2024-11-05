@@ -83,3 +83,4 @@ gem 'faker'
 gem 'byebug'
 gem 'kaminari'  
 gem 'stripe'
+gem "rqrcode"
