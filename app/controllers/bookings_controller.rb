@@ -28,6 +28,13 @@ class BookingsController < ApplicationController
     redirect_to event_path(@event), alert: "#{error.message}"
   end
 
+  def all_bookings
+    @bookings = current_user.bookings.includes(:event)
+  end
+
+  def booking_details
+    @booking = Booking.find(params[:id])
+  end
 
   private
 

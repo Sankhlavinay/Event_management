@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
   resources :events, only: [:index, :show]
 
-  resources :bookings, only: %i[create]
+  resources :bookings, only: %i[create] do
+    get :booking_details, on: :member 
+    get :all_bookings, on: :collection
+  end
 
   namespace :booking do
     resources :events

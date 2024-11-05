@@ -1,0 +1,21 @@
+<div class="col-lg-12">
+  <div class="card shadow mt-5 mb-5">
+    <div class="card-header">
+      <h3><%= @booking.event.title %></h3>
+    </div>
+    <div class="card-body">
+      <h3><%= @booking.user.full_name %> / <%= @booking.user.email %></h3>
+
+      <h3>Booking Details</h3>
+      <p><strong>No. of Tickets:</strong><%= @booking.no_of_tickets %></p>
+      <p><strong>Amount:</strong><%= @booking.price_paid %></p>
+
+      <hr>
+
+      <h3>Event Schedule</h3>
+      <p><strong>Date</strong><%= @booking.event.date %></p>
+      <p><strong>Time:</strong><%= @booking.event.time.strftime("%I:%M %p") %></p>
+
+    </div>
+  </div>
+</div>
