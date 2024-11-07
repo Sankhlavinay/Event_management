@@ -7,4 +7,5 @@ class Booking < ApplicationRecord
   def update_available_tickets
     event.update(available_ticket: event.available_ticket - no_of_tickets)
   end
+
 end
