@@ -1,19 +1,13 @@
 require "rqrcode"
 
 class BookingsMailer < ApplicationMailer
+  include BookingsHelper
   def booking_confirmation(booking)
 
-    qrcode = RQRCode::QRCode.new(booking_root_url(booking.id))
-    @svg = qrcode.as_svg(
-      color: "000",
-      shape_rendering: "crispEdges",
-      module_size: 5,
-      standalone: true,
-      use_path: true
-    )
     @booking = booking
     @user = booking.user
     @event = booking.event
+    @svg = qr_code_svg_for(@booking)
 
     mail to: @user.email, subject: "Booking Confirmation for #{@event.title}"
   end

@@ -9,10 +9,17 @@ class Event < ApplicationRecord
 
   validates :title, :description, :location, :date, :time, presence: true
   validates :ticket_price, :available_ticket, presence: true, numericality: true 
-    
+  
+  scope :sold_out, -> { includes(:users).where(available_ticket: 0) }  
+  scope :current_events, -> { includes(:users).where("date > ?", Date.today ) }  
+  scope :ended_events, -> { includes(:users).where("date < ?", Date.today ) }  
 
   def create_booking(user_id, event_id)
     Booking.create!(user_id: user_id, event_id: event_id)
+  end
+
+  def is_upcoming_event?
+    date > Date.today 
   end
 
 end
