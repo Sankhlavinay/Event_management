@@ -3,7 +3,12 @@ class Booking::EventsController < ApplicationController
   before_action :authorized_organizer, only: [:new, :create, :update, :destroy]
 
   def index
-    @events = current_user.events.includes(:users).order(:created_at).page(params[:page]).per(9)
+    @current_events = current_user.events.current_events.includes(:users).order(created_at: :desc).page(params[:page]).per(9)
+
+    @sold_events = current_user.events.sold_out.order(:created_at).page(params[:page]).per(9)
+
+    @ended_events = current_user.events.ended_events.order(:created_at).page(params[:page]).per(9)
+
   end
 
   
@@ -46,7 +51,7 @@ class Booking::EventsController < ApplicationController
   private 
 
   def set_params
-    params.require(:event).permit(:title, :description, :location, :date, :time, :ticket_price, :available_ticket)
+    params.require(:event).permit(:title, :description, :location, :date, :time, :ticket_price, :available_ticket, images: [])
   end
 
   def set_event
