@@ -1,6 +1,15 @@
 <%= form_with model: [:booking, event] do |form| %> 
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-4 mb-3">
+      <div class="form-group">
+        <%= form.label :images, class: "mb-2" %>
+        <%= form.file_field :images, multiple: true, class: "form-control form-control-lg rounded-0" %>
+        <% @event.errors.full_messages_for(:title).each do |message| %>
+        <p class="text-danger"><%= message%></p>
+        <% end %>
+      </div>        
+    </div>
+    <div class="col-lg-4 mb-3">
       <div class="form-group">
         <%= form.label :title, class: "mb-2" %>
         <%= form.text_field :title, class: "form-control form-control-lg rounded-0" %>
@@ -9,7 +18,7 @@
         <% end %>
       </div>        
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 mb-3">
       <div class="form-group">
         <%= form.label :description, class: "mb-2" %>
         <%= form.text_area :description, class: "form-control form-control-lg rounded-0" %>
@@ -18,7 +27,7 @@
         <% end %>
       </div>        
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 mb-3">
       <div class="form-group">
         <%= form.label :location, class: "mb-2" %>
         <%= form.text_field :location, class: "form-control form-control-lg rounded-0" %>
@@ -27,7 +36,7 @@
         <% end %>
       </div>        
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 mb-3">
       <div class="form-group">
         <%= form.label :date, class: "mb-2" %>
         <%= form.date_field :date, class: "form-control form-control-lg rounded-0" %>
@@ -36,7 +45,7 @@
         <% end %>
       </div>        
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 mb-3">
       <div class="form-group">
         <%= form.label :time, class: "mb-2" %>
         <%= form.time_field :time, class: "form-control form-control-lg rounded-0 b-form-timepicker" %>
@@ -45,7 +54,7 @@
         <% end %>
       </div>        
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 mb-3">
       <div class="form-group">
         <%= form.label :ticket_price, class: "mb-2" %>
         <%= form.text_field :ticket_price, class: "form-control form-control-lg rounded-0" %>
@@ -54,7 +63,7 @@
         <% end %>
       </div>        
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 mb-3">
       <div class="form-group">
         <%= form.label :available_ticket, class: "mb-2" %>
         <%= form.text_field :available_ticket, class: "form-control form-control-lg rounded-0" %>

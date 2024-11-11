@@ -4,6 +4,8 @@ class Event < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :users, through: :bookings
 
+  has_many_attached :images
+
 
   TICKET_PRICE = [499,799,999]
 

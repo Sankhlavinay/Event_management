@@ -4,6 +4,11 @@
       <div class="card-body">
         <h2 class="text-center">Event Information</h2>
         <div class="row mt-4">
+          <% @event.images.each do |image| %>
+            <% if @event.images.attached? %>
+              <%= image_tag image, class: 'img-fluid w-25 mx-auto' %>
+            <% end %>
+          <% end %>
             <p class="lead fw-bold text-capitalize text-center"><%= @event.title %></p>
             <p class="lead"><%= @event.description %></p>
             <p class="lead"><%= @event.location %></p>

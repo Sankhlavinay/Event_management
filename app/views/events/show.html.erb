@@ -4,6 +4,11 @@
       <div class="card-body">
         <h2 class="text-center">Event Information</h2>
         <div class="row mt-4">
+            <% @event.images.each do |image| %>
+              <% if @event.images.attached? %>
+                <%= image_tag image, class: 'img-fluid w-25 mx-auto' %>
+              <% end %>
+            <% end %>
             <p class="lead fw-bold text-capitalize text-center"><%= @event.title %></p>
             <p class="lead"><%= @event.description %></p>
             <p class="lead"><%= @event.location %></p>
@@ -23,70 +28,71 @@
       </div>
     </div>
   </div>
+
   <div class="col-lg-4">
     <div class="card shadow mt-3 mb-3 rounded-0">
       <div class="card-body mb-2">
-        <% if @upcoming_event %>
+        <% if @event.is_upcoming_event? %>
 
-        <h4 class="card-title mb-2">Book Your Ticket Now</h4>
+          <h4 class="card-title mb-2">Book Your Ticket Now</h4>
 
-        <%= form_with url: :bookings, data: { turbo: false} do |form| %>
-          <%= form.hidden_field :event_id, value: @event.id %>
+          <%= form_with url: :bookings, data: { turbo: false} do |form| %>
+            <%= form.hidden_field :event_id, value: @event.id %>
 
-          <div class="form-group">
-            <%= form.label :full_name, class: "mb-2 mt-2" %>
-            <%= form.text_field :full_name, class: "form-control", required: true %>
-          </div>
+            <div class="form-group">
+              <%= form.label :full_name, class: "mb-2 mt-2" %>
+              <%= form.text_field :full_name, class: "form-control", required: true %>
+            </div>
 
-          <div class="form-group">
-            <%= form.label :email, class: "mb-2 mt-2" %>
-            <%= form.text_field :email, class: "form-control", required: true %>
-          </div>
+            <div class="form-group">
+              <%= form.label :email, class: "mb-2 mt-2" %>
+              <%= form.text_field :email, class: "form-control", required: true %>
+            </div>
 
-          <div class="form-group">
-            <%= form.label :contact_number, class: "mb-2 mt-2" %>
-            <%= form.text_field :contact_number, class: "form-control", required: true %>
-          </div>
+            <div class="form-group">
+              <%= form.label :contact_number, class: "mb-2 mt-2" %>
+              <%= form.text_field :contact_number, class: "form-control", required: true %>
+            </div>
 
-          <div class="form-group">
-            <%= form.label :tickets, class: "mb-2 mt-2" %>
-            <%= form.number_field :no_of_tickets, class: "form-control", required: true, min: 1, max: @event.available_ticket  %>
-          </div>
+            <div class="form-group">
+              <%= form.label :tickets, class: "mb-2 mt-2" %>
+              <%= form.number_field :no_of_tickets, class: "form-control", required: true, min: 1, max: @event.available_ticket  %>
+            </div>
 
-          <h4 class="mt-4 mb-3">Card Details</h4>
-          <hr>
+            <h4 class="mt-4 mb-3">Card Details</h4>
+            <hr>
 
 
-          <div class="form-group">
-            <%= form.label :card_number, class: "mb-2 mt-2" %>
-            <%= form.text_field :card_number, class: "form-control", required: true %>
-          </div>
+            <div class="form-group">
+              <%= form.label :card_number, class: "mb-2 mt-2" %>
+              <%= form.text_field :card_number, class: "form-control", required: true %>
+            </div>
 
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group">
-                <%= form.label :cvv, class: "mb-2 mt-2" %>
-                <%= form.text_field :cvv, class: "form-control", required: true, maxlength: 4 %>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <%= form.label :cvv, class: "mb-2 mt-2" %>
+                  <%= form.text_field :cvv, class: "form-control", required: true, maxlength: 4 %>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <%= form.label :month, class: "mb-2 mt-2" %>
+                  <%= form.number_field :exp_month, class: "form-control", required: true, min: 1, max: 12 %>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <%= form.label :year, class: "mb-2 mt-2" %>
+                  <%= form.number_field :exp_year, class: "form-control", required: true, min: 2022, max: 2028 %>
+                </div>
               </div>
             </div>
-            <div class="col-lg-3">
-              <div class="form-group">
-                <%= form.label :month, class: "mb-2 mt-2" %>
-                <%= form.number_field :exp_month, class: "form-control", required: true, min: 1, max: 12 %>
-              </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="form-group">
-                <%= form.label :year, class: "mb-2 mt-2" %>
-                <%= form.number_field :exp_year, class: "form-control", required: true, min: 2022, max: 2028 %>
-              </div>
-            </div>
-          </div>
 
-          <div class="d-grid gap-2">
-            <%= form.submit "Book Your Tickets Now", class: "btn btn-outline-danger btn-lg mt-3" %>
-          </div>
-        <% end %>
+            <div class="d-grid gap-2">
+              <%= form.submit "Book Your Tickets Now", class: "btn btn-outline-danger btn-lg mt-3" %>
+            </div>
+          <% end %>
       </div>
       <% else %>
         <h4 class="card-title mb-2">Event has been ended!</h4>
