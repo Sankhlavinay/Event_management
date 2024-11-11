@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, :trackable 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, 
+         :omniauthable, omniauth_providers: [:google_oauth2]
 
   ROLE = ["Organizer", "Attendee"]
 
@@ -24,5 +25,19 @@ class User < ApplicationRecord
   
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "email", "encrypted_password", "id", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at"]
+  end
+
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.where(email: data['email']).first
+
+    unless user
+      user = User.create(
+        full_name: data['name'],
+        email: data['email'],
+        password: Devise.friendly_token[0,20]
+      )
+    end
+    user
   end
 end

@@ -75,6 +75,9 @@ end
 
 gem 'pg'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 gem 'pundit'
 
@@ -84,3 +87,4 @@ gem 'byebug'
 gem 'kaminari'  
 gem 'stripe'
 gem "rqrcode"
+

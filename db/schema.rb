@@ -100,7 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_07_101216) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role"
+    t.string "role", default: "Attendee"
     t.string "stripe_user_id"
     t.string "full_name"
     t.string "contact_number"
