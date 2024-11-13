@@ -1,5 +1,5 @@
 class Booking::EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy ]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :soft_deleted_events ]
   before_action :authorized_organizer, only: [:new, :create, :update, :destroy]
 
   def index
@@ -9,9 +9,9 @@ class Booking::EventsController < ApplicationController
 
     @ended_events = current_user.events.ended_events.order(:created_at).page(params[:page]).per(9)
 
+    @soft_deleted_events = current_user.events.soft_deleted
   end
 
-  
   def new
     @event = current_user.events.new
   end
@@ -46,6 +46,16 @@ class Booking::EventsController < ApplicationController
     if @event.destroy
       redirect_to events_path,  notice: "Event deleted Successfully"
     end
+  end
+
+  def soft_deleted_events
+    if @event.is_deleted == false
+      @event.update(is_deleted: true)
+    else
+      @event.update(is_deleted: false)
+    end
+    flash[:notice] = "Event deleted successfully."
+    redirect_to  action: :index    
   end
 
   private 
