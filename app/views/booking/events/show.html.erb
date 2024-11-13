@@ -23,7 +23,12 @@
           
         <% if current_user.organizer? %>
           <%= link_to 'Edit Events', edit_booking_event_path(@event), class: "btn btn-primary rounded-0" %>
-          <%= link_to 'Delete Events', booking_event_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete this event" } ,class: "btn btn-danger rounded-0" %>
+          <%#= link_to 'Delete Events', booking_event_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete this event" } ,class: "btn btn-danger rounded-0" %>
+          <% if @event.set_true_is_deleted %>
+            <%= link_to 'Delete Events', soft_deleted_events_booking_event_path(@event), method: :patch ,class: "btn btn-danger rounded-0" %>
+          <% else %>
+            <%= link_to 'Live Again', soft_deleted_events_booking_event_path(@event), method: :patch ,class: "btn btn-danger rounded-0" %>
+          <% end %>
         <% end %>
       </div>
     </div>

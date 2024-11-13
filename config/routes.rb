@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   end
 
   namespace :booking do
-    resources :events
+    resources :events do
+      patch :soft_deleted_events, on: :member
+    end
   end 
 end
